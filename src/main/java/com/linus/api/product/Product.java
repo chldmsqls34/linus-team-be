@@ -15,13 +15,13 @@ public class Product {
     @Id
     @Column(name="ID",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @OneToMany(mappedBy = "product")
     private List<Order> order;
 
     @Column(name="NAME")
-    private String name ;
+    private String product_name ;
 
     @Column(name="COMPANY")
     private String company;

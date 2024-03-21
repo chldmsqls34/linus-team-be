@@ -5,7 +5,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.*;
-import jakarta.*;
 
 import java.util.List;
 

@@ -1,4 +1,5 @@
 package com.linus.api.user;
+
 import jakarta.persistence.*;
 import lombok.*;
 

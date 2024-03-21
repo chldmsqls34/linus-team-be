@@ -8,7 +8,4 @@ import java.util.List;
 @RestController
 public class ArticleController {
 
-    public List<?> findUsers() throws SQLException {
-        return null;
-    }
 }

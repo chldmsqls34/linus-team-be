@@ -3,14 +3,13 @@ package com.linus.api.user;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "users")
+@Entity(name="users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString(exclude = {"id"})
 public class User {
-
     @Id
-    @Column(name="id", nullable = false)
+    @Column(name="id",nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
@@ -37,8 +36,5 @@ public class User {
         this.height = height;
         this.weight = weight;
     }
-
-
-
 
 }

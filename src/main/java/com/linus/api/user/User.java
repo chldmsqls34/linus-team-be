@@ -14,7 +14,7 @@ import java.util.List;
 @ToString(exclude = {"id"})
 public class User {
     @Id
-    @Column(name="ID",nullable = false)
+    @Column(name= "ID",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -27,28 +27,28 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> order;
 
-    @Column(name="USERNAME")
+    @Column(name= "USERNAME")
     private String username;
 
-    @Column(name="PASSWORD")
+    @Column(name= "PASSWORD")
     private String password;
 
-    @Column(name="NAME")
+    @Column(name= "NAME")
     private String name;
 
-    @Column(name="PHONE")
+    @Column(name= "PHONE")
     private String phone;
 
-    @Column(name="ADDRESS")
+    @Column(name= "ADDRESS")
     private String address;
 
-    @Column(name="JOB")
+    @Column(name= "JOB")
     private String job;
 
-    @Column(name="HEIGHT")
+    @Column(name= "HEIGHT")
     private double height;
 
-    @Column(name="WEIGHT")
+    @Column(name= "WEIGHT")
     private double weight;
 
     @Builder(builderMethodName = "builder")

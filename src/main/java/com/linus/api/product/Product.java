@@ -7,26 +7,26 @@ import lombok.*;
 import java.util.List;
 
 
-@Entity(name="PRODUCTS")
+@Entity(name= "PRODUCTS")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
 public class Product {
     @Id
-    @Column(name="ID",nullable = false)
+    @Column(name= "ID",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "product")
     private List<Order> order;
 
-    @Column(name="NAME")
+    @Column(name= "NAME")
     private String product_name ;
 
-    @Column(name="COMPANY")
+    @Column(name= "COMPANY")
     private String company;
 
-    @Column(name="PRICE")
+    @Column(name= "PRICE")
 
     private int price;
     @Column(name = "CATEGORY_ID")

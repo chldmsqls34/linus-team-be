@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
-@Entity(name = "Boards")
+@Entity(name = "BOARDS")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString(exclude = {"id"})
@@ -16,8 +16,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
-    @JoinColumn(name = "ARTICLE_ID")
+    @OneToMany(mappedBy = "board")
     private List<Article> article;
 
     @Column(name = "BOARD_NAME")

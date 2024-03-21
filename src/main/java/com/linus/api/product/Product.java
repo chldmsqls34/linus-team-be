@@ -1,12 +1,14 @@
 package com.linus.api.product;
 
 import com.linus.api.order.Order;
+
 import jakarta.persistence.*;
+
 import lombok.*;
 
 import java.util.List;
 
-
+@Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
@@ -17,7 +19,7 @@ public class Product {
     private Long id;
 
     @OneToMany(mappedBy = "product")
-    private List<Order> order;
+    private List<Order> orders;
 
 
     @Column(name = "PRODUCT_NAME")

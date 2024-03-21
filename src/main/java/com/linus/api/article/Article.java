@@ -1,16 +1,34 @@
 package com.linus.api.article;
 
+import com.linus.api.board.Board;
+import jakarta.persistence.*;
 import lombok.*;
 
+@Entity(name = "ARTICLES")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString(exclude = {"id"})
 
 public class Article {
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "BOARD_ID")
+    private Board board;
+
+    @Column(name = "TITLE")
     private String title;
+
+    @Column(name = "CONTENT")
     private String content;
+
+    @Column(name = "WRITER")
     private String writer;
+
+    @Column(name = "REGISTERDATE")
     private String registerDate;
 
     @Builder(builderMethodName = "builder")
@@ -21,5 +39,4 @@ public class Article {
         this.writer = writer;
         this.registerDate = registerDate;
     }
-
 }

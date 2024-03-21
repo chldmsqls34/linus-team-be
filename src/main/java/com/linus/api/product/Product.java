@@ -1,32 +1,33 @@
 package com.linus.api.product;
 
 import com.linus.api.order.Order;
-
+import com.linus.api.user.User;
 import jakarta.persistence.*;
-
 import lombok.*;
-
 import java.util.List;
 
-@Entity
+
+@Entity(name="PRODUCTS")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
 public class Product {
     @Id
-    @Column(name="ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name="ID",nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @OneToMany(mappedBy = "product")
-    private List<Order> orders;
+    private List<Order> order;
 
+    @Column(name="NAME")
+    private String name ;
 
-    @Column(name = "PRODUCT_NAME")
-    private String product_name ;
-    @Column(name = "COMPANY")
+    @Column(name="COMPANY")
     private String company;
-    @Column(name = "PRICE")
+
+    @Column(name="PRICE")
+
     private int price;
     @Column(name = "CATEGORY_ID")
     private int category_id;

@@ -4,14 +4,13 @@ import com.linus.api.order.Order;
 import com.linus.api.user.User;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
+
 
 @Entity(name="PRODUCTS")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
-
 public class Product {
     @Id
     @Column(name="ID",nullable = false)
@@ -28,14 +27,17 @@ public class Product {
     private String company;
 
     @Column(name="PRICE")
+
     private int price;
+    @Column(name = "CATEGORY_ID")
+    private int category_id;
 
     @Builder(builderMethodName = "builder")
-
-    public Product(int id, int i, String name, String company, int price) {
+    public Product(Long id, String product_name, String company, int price, int category_id) {
         this.id = id;
-        this.name = name;
+        this.product_name = product_name;
         this.company = company;
         this.price = price;
+        this.category_id = category_id;
     }
 }

@@ -1,4 +1,5 @@
 package com.linus.api.user;
+
 import com.linus.api.account.Account;
 import com.linus.api.board.Board;
 import com.linus.api.order.Order;
@@ -65,5 +66,4 @@ public class User {
         this.height = height;
         this.weight = weight;
     }
-
 }

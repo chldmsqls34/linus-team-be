@@ -4,7 +4,7 @@ import com.linus.api.article.Article;
 import com.linus.api.user.User;
 import jakarta.persistence.*;
 import lombok.*;
-
+import java.util.List;
 import java.util.List;
 
 @Entity(name="BOARDS")
@@ -36,6 +36,4 @@ public class Board {
         this.boardName = boardName;
         this.boardType = boardType;
     }
-
-
 }

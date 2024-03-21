@@ -1,5 +1,6 @@
 package com.linus.api.account;
 
+
 import com.linus.api.board.Board;
 import com.linus.api.user.User;
 import jakarta.persistence.*;

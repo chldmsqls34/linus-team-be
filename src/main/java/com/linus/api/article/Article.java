@@ -40,5 +40,4 @@ public class Article {
         this.writer = writer;
         this.registerDate = registerDate;
     }
-
 }

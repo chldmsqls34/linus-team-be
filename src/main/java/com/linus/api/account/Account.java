@@ -15,18 +15,18 @@ import java.util.Date;
 
 public class Account {
     @Id
-    @Column(name="id")
+    @Column(name="ID")
     private Long id; //아이디
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="USER_ID")
     private User user; //유저
-    @Column(name="account_number")
+    @Column(name="ACCOUNT_NUMBER")
     private String accountNumber; //계좌번호
-    @Column(name="account_holder")
+    @Column(name="ACCOUNT_HOLDER")
     private String accountHolder; // 예금주
-    @Column(name="balance")
+    @Column(name="BALANCE")
     private Double balance; //잔고
-    @Column(name="transaction_date")
+    @Column(name="TRANSACTION_DATE")
     private Date transactionDate;  //현재날짜
 
     @Builder(builderMethodName = "builder")

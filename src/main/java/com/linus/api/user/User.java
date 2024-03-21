@@ -7,34 +7,35 @@ import lombok.*;
 
 import java.util.List;
 
-@Entity(name="users")
+@Entity(name="USERS")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString(exclude = {"id"})
 public class User {
     @Id
-    @Column(name="id")
+    @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "USER")
     private List<Account> accounts;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "USER")
     private List<Order> orders;
-    @Column(name="username")
+
+    @Column(name="USERNAME")
     private String username;
-    @Column(name="password")
+    @Column(name="PASSWORD")
     private String password;
-    @Column(name="name")
+    @Column(name="NAME")
     private String name;
-    @Column(name="phone")
+    @Column(name="PHONE")
     private String phone;
-    @Column(name="address")
+    @Column(name="ADDRESS")
     private String address;
-    @Column(name="job")
+    @Column(name="JOB")
     private String job;
-    @Column(name="height")
+    @Column(name="HEIGHT")
     private double height;
-    @Column(name="weight")
+    @Column(name="WEIGHT")
     private double weight;
 
     @Builder(builderMethodName = "builder")
@@ -52,5 +53,4 @@ public class User {
         this.height = height;
         this.weight = weight;
     }
-
 }

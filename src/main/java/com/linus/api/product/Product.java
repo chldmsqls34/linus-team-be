@@ -3,7 +3,6 @@ package com.linus.api.product;
 import com.linus.api.order.Order;
 import jakarta.persistence.*;
 import lombok.*;
-import jakarta.*;
 
 import java.util.List;
 

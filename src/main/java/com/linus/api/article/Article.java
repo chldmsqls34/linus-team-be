@@ -5,14 +5,14 @@ import com.linus.api.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name="ARTICLES")
+@Entity(name= "ARTICLES")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString(exclude = {"id"})
 
 public class Article {
     @Id
-    @Column(name="ID",nullable = false)
+    @Column(name= "ID",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -20,16 +20,16 @@ public class Article {
     @JoinColumn(name = "BOARD_ID")
     private Board board;
 
-    @Column(name="TITLE")
+    @Column(name= "TITLE")
     private String title;
 
-    @Column(name="CONTENT")
+    @Column(name= "CONTENT")
     private String content;
 
-    @Column(name="WRITER")
+    @Column(name= "WRITER")
     private String writer;
 
-    @Column(name="REGISTERDATE")
+    @Column(name= "REGISTERDATE")
     private String registerDate;
 
     @Builder(builderMethodName = "builder")

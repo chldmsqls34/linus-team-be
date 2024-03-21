@@ -6,13 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.SQLException;
 import java.util.List;
 @RestController
-@RequiredArgsConstructor
-
 public class ArticleController {
-    private final ArticleServiceImpl service;
-
 
     public List<?> findUsers() throws SQLException {
-        return service.findUsers();
+        return null;
     }
 }

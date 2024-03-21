@@ -10,20 +10,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 @Service
-@RequiredArgsConstructor
 
 public class ArticleServiceImpl extends AbstractService<User> implements ArticleService {
 
-    private final ArticleRepository repository;
-
-
-
-
-
-
     @Override
     public List<?> findUsers() throws SQLException {
-        return repository.findUsers();
+        return null;
     }
 
     @Override

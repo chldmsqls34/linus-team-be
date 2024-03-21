@@ -16,7 +16,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "BOARDS")
+    @OneToMany(mappedBy = "board")
     private List<Article> article;
 
     @Column(name = "BOARD_NAME")

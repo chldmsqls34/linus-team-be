@@ -14,12 +14,12 @@ import java.util.List;
 public class User {
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany(mappedBy = "user")
     private List<Account> accounts;
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="username")
     private String username;
     @Column(name="password")

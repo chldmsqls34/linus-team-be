@@ -12,7 +12,5 @@ public class ArticleController {
     private final ArticleServiceImpl service;
 
 
-    public List<?> findUsers() throws SQLException {
-        return service.findUsers();
-    }
+
 }

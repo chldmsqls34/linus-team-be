@@ -16,9 +16,9 @@ public class User {
     @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "USER")
+    @OneToMany(mappedBy = "user")
     private List<Account> accounts;
-    @OneToMany(mappedBy = "USER")
+    @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
     @Column(name="USERNAME")

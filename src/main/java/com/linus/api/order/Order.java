@@ -5,7 +5,7 @@ import com.linus.api.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-
+@Entity
 public class Order {
   @Id
   @Column(name="id",nullable = false)

@@ -26,6 +26,30 @@ public class UserController {
         return userMap;
     }
 
+    @PostMapping("/join")
+    public Map<String, ?> join(@RequestBody Map<String, ?> jmap){
+        String username = (String) jmap.get("username");
+        String password = (String) jmap.get("password");
+        String name = (String) jmap.get("name");
+        String phone = (String) jmap.get("phone");
+        String address = (String) jmap.get("address");
+        String job = (String) jmap.get("job");
+        String height = (String) jmap.get("height");
+        String weight = (String) jmap.get("weight");
+        System.out.println("리퀘스트가 가져온이름 : "+username);
+        Map<String, String> joinMap = new HashMap<>();
+        joinMap.put("username", username);
+        joinMap.put("password", password);
+        joinMap.put("name", name);
+        joinMap.put("phone", phone);
+        joinMap.put("address", address);
+        joinMap.put("job", job);
+        joinMap.put("height", height);
+        joinMap.put("weight", weight);
+
+        return joinMap;
+    }
+
     public Map<String,?> addUsers(@RequestBody Map<String,?>map) {
         Map<String,String> userMap = new HashMap<>();
         return userMap;

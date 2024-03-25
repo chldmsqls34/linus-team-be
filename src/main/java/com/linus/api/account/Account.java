@@ -23,16 +23,16 @@ public class Account {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @Column(name="ACCOUNT_NUMBER")
+    @Column(name= "ACCOUNT_NUMBER")
     private String accountNumber; //계좌번호
 
-    @Column(name="ACCOUNT_HOLDER")
+    @Column(name= "ACCOUNT_HOLDER")
     private String accountHolder; // 예금주
 
-    @Column(name="BALANCE")
+    @Column(name= "BALANCE")
     private Double balance; //잔고
 
-    @Column(name="TRANSACTION_DATE")
+    @Column(name= "TRANSACTION_DATE")
     private Date transactionDate;  //현재날짜
 
     @Builder(builderMethodName = "builder")

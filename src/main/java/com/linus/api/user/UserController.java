@@ -13,18 +13,40 @@ import java.util.*;
 
 public class UserController {
     private final UserServiceImpl service;
+    private final UserRepository repo;
 
-    @PostMapping("/login")
-    public Map<String,?> login(@RequestBody Map<String,?>map){
-        String username = (String) map.get("username");
-        String password = (String) map.get("password");
+    @PostMapping("/api/login")
+    public Map<String,?> login(@RequestBody Map<String,?>paramMap){
+        String username = (String) paramMap.get("username");
+        String password = (String) paramMap.get("password");
         System.out.println("리퀘스트가 가져온이름 :"+username);
         System.out.println("비번 :"+password);
-        Map<String,String> userMap = new HashMap<>();
-        userMap.put("username","입력한 아이디는"+username);
-        userMap.put("password","입력한 비밀번호는"+password);
-        return userMap;
+        Map<String,String> map = new HashMap<>();
+        map.put("username","입력한 아이디는"+username);
+        map.put("password","입력한 비밀번호는"+password);
+        return map;
     }
+    @PostMapping(path="/api/users")
+    public Map<String,?> join(@RequestBody Map<?,?> paramMap){
+        String strHeight = String.valueOf(paramMap.get("height"));
+        String strWeight = String.valueOf(paramMap.get("weight"));
+        User newUser = repo.save(User.builder()
+                .username((String)paramMap.get("username"))
+                .password((String)paramMap.get("password"))
+                .name((String)paramMap.get("name"))
+                .phone((String)paramMap.get("phone"))
+                .address((String)paramMap.get("address"))
+                .job((String)paramMap.get("job"))
+                .height(Double.parseDouble(strHeight))
+                .weight(Double.parseDouble(strWeight))
+                .build());
+        System.out.println("DB에 저장된 User 정보"+newUser);
+        boolean flag = repo.findById(newUser.getId()).isEmpty();
+        Map<String,Messenger> map = new HashMap<>();
+        map.put("result",Messenger.SUCCESS);
+        return map;
+    }
+
 
     @PostMapping("/join")
     public Map<String, ?> join(@RequestBody Map<String, ?> jmap){

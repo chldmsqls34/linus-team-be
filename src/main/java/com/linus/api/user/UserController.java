@@ -3,33 +3,40 @@ package com.linus.api.user;
 import com.linus.api.enums.Messenger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.SQLException;
 import java.util.*;
 
-@CrossOrigin(origins ="http://localhost:3000/")
+@CrossOrigin(origins ="http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 
 public class UserController {
-    private final UserServiceImpl service;
+
     private final UserRepository repo;
 
     @PostMapping("/api/login")
-    public Map<String,?> login(@RequestBody Map<String,?>paramMap){
+    public Map<String,?> login(@RequestBody Map<?,?>paramMap){
+        Map<String, Messenger> map = new HashMap<>();
         String username = (String) paramMap.get("username");
-        String password = (String) paramMap.get("password");
-        System.out.println("리퀘스트가 가져온이름 :"+username);
-        System.out.println("비번 :"+password);
-        Map<String,String> map = new HashMap<>();
-        map.put("username","입력한 아이디는"+username);
-        map.put("password","입력한 비밀번호는"+password);
+        User dbUser = repo.findByUsername(username).orElse(null);
+        String password = Objects.requireNonNull(dbUser).getPassword();
+        if(dbUser == null){
+            map.put("message",Messenger.FAIL);
+        }else if(!Objects.equals(password,paramMap.get("password"))){
+            map.put("message",Messenger.WRONG_PASSWORD);
+        }else{
+            map.put("message",Messenger.SUCCESS);
+        }
+        Long id = dbUser.getId();
+        System.out.println("ID is"+id);
+        System.out.println("Password is"+password);
+        System.out.println("User is"+dbUser);
         return map;
     }
     @PostMapping(path="/api/users")
     public Map<String,?> join(@RequestBody Map<?,?> paramMap){
         String strHeight = String.valueOf(paramMap.get("height"));
         String strWeight = String.valueOf(paramMap.get("weight"));
+        @SuppressWarnings("null")
         User newUser = repo.save(User.builder()
                 .username((String)paramMap.get("username"))
                 .password((String)paramMap.get("password"))

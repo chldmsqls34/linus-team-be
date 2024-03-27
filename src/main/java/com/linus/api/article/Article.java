@@ -30,14 +30,14 @@ public class Article {
     private String writer;
 
     @Column(name= "REGISTERDATE")
-    private String registerDate;
+    private String registerdate;
 
     @Builder(builderMethodName = "builder")
-    public Article(Long id, String title, String content, String writer, String registerDate) {
+    public Article(Long id, String title, String content, String writer, String registerdate) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.writer = writer;
-        this.registerDate = registerDate;
+        this.registerdate = registerdate;
     }
 }

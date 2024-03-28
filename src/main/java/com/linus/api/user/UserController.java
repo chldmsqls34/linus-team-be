@@ -3,6 +3,7 @@ package com.linus.api.user;
 import com.linus.api.enums.Messenger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.*;
 
 @CrossOrigin(origins ="http://localhost:3000")
@@ -31,9 +32,17 @@ public class UserController {
         System.out.println("Password is"+password);
         System.out.println("User is"+dbUser);
         return map;
+//        String username = (String) paramMap.get("username");
+//        String password = (String) paramMap.get("password");
+//        System.out.println("리퀘스트가 가져온이름 :"+username);
+//        System.out.println("비번 :"+password);
+//        Map<String,String> map = new HashMap<>();
+//        map.put("username","입력한 아이디는"+username);
+//        map.put("password","입력한 비밀번호는"+password);
+//        return map;
     }
     @PostMapping(path="/api/users")
-    public Map<String,?> join(@RequestBody Map<?,?> paramMap){
+    public Map<String,?> join(@RequestBody Map<String,?> paramMap){
         String strHeight = String.valueOf(paramMap.get("height"));
         String strWeight = String.valueOf(paramMap.get("weight"));
         @SuppressWarnings("null")
@@ -53,7 +62,6 @@ public class UserController {
         map.put("result",Messenger.SUCCESS);
         return map;
     }
-
 
     public Map<String,?> addUsers(@RequestBody Map<String,?>map) {
         Map<String,String> userMap = new HashMap<>();

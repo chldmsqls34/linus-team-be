@@ -4,8 +4,11 @@ import com.linus.api.enums.Messenger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.sql.SQLException;
 import java.util.*;
+
+import static com.linus.api.enums.Messenger.FAIL;
 
 @CrossOrigin(origins ="http://localhost:3000/")
 @RestController
@@ -16,18 +19,34 @@ public class UserController {
     private final UserRepository repo;
 
     @PostMapping("/api/login")
-    public Map<String,?> login(@RequestBody Map<String,?>paramMap){
-        String username = (String) paramMap.get("username");
-        String password = (String) paramMap.get("password");
-        System.out.println("리퀘스트가 가져온이름 :"+username);
-        System.out.println("비번 :"+password);
-        Map<String,String> map = new HashMap<>();
-        map.put("username","입력한 아이디는"+username);
-        map.put("password","입력한 비밀번호는"+password);
+    public Map<String,?> login(@RequestBody Map<?,?>paramMap){
+        Map<String, Messenger> map = new HashMap<>();
+        User optUser = repo.findByUsername((String) paramMap.get("username")).orElse(null);
+        if(optUser == null){
+            System.out.println(Messenger.FAIL);
+            map.put("message", Messenger.FAIL);
+        }else if (!optUser.getPassword().equals(paramMap.get("password"))){
+            System.out.println(Messenger.WRONG_PASSWORD);
+            map.put("message", Messenger.WRONG_PASSWORD);
+        }else {
+            System.out.println(Messenger.SUCCESS);
+            map.put("message", Messenger.SUCCESS);
+            System.out.println("ID is "+ optUser.getId());
+            System.out.println("PW is "+ optUser.getPassword());
+            System.out.println("User is "+null);
+        }
         return map;
+//        String username = (String) paramMap.get("username");
+//        String password = (String) paramMap.get("password");
+//        System.out.println("리퀘스트가 가져온이름 :"+username);
+//        System.out.println("비번 :"+password);
+//        Map<String,String> map = new HashMap<>();
+//        map.put("username","입력한 아이디는"+username);
+//        map.put("password","입력한 비밀번호는"+password);
+//        return map;
     }
     @PostMapping(path="/api/users")
-    public Map<String,?> join(@RequestBody Map<?,?> paramMap){
+    public Map<String,?> join(@RequestBody Map<String,?> paramMap){
         String strHeight = String.valueOf(paramMap.get("height"));
         String strWeight = String.valueOf(paramMap.get("weight"));
         User newUser = repo.save(User.builder()
@@ -45,31 +64,6 @@ public class UserController {
         Map<String,Messenger> map = new HashMap<>();
         map.put("result",Messenger.SUCCESS);
         return map;
-    }
-
-
-    @PostMapping("/join")
-    public Map<String, ?> join(@RequestBody Map<String, ?> jmap){
-        String username = (String) jmap.get("username");
-        String password = (String) jmap.get("password");
-        String name = (String) jmap.get("name");
-        String phone = (String) jmap.get("phone");
-        String address = (String) jmap.get("address");
-        String job = (String) jmap.get("job");
-        String height = (String) jmap.get("height");
-        String weight = (String) jmap.get("weight");
-        System.out.println("리퀘스트가 가져온이름 : "+username);
-        Map<String, String> joinMap = new HashMap<>();
-        joinMap.put("username", username);
-        joinMap.put("password", password);
-        joinMap.put("name", name);
-        joinMap.put("phone", phone);
-        joinMap.put("address", address);
-        joinMap.put("job", job);
-        joinMap.put("height", height);
-        joinMap.put("weight", weight);
-
-        return joinMap;
     }
 
     public Map<String,?> addUsers(@RequestBody Map<String,?>map) {

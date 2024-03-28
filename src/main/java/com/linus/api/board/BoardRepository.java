@@ -1,12 +1,10 @@
 package com.linus.api.board;
 
 import lombok.Getter;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class BoardRepository {
-    @Getter
-    private static BoardRepository instance;
-
-    private BoardRepository() {
-    }
+@Repository
+public interface BoardRepository extends JpaRepository<Board, Long> {
 
 }

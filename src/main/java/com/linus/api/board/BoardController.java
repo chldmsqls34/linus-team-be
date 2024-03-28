@@ -1,16 +1,13 @@
 package com.linus.api.board;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequiredArgsConstructor
 public class BoardController {
-    @Getter
-    private static BoardController instance = new BoardController();
-    BoardService service;
-
-    public BoardController() {
-        this.service = BoardServiceImpl.getInstance();
-    }
-
+    private final BoardService service;
 
     public void deleteBoards() {
         service.deleteBoards();

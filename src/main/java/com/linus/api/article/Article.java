@@ -27,13 +27,13 @@ public class Article {
     private String content;
 
     @Column(name= "WRITER")
-    private String writer;
+    private Long writer;
 
     @Column(name= "REGISTERDATE")
     private String registerDate;
 
     @Builder(builderMethodName = "builder")
-    public Article(Long id, String title, String content, String writer, String registerDate) {
+    public Article(Long id, String title, String content, Long writer, String registerDate) {
         this.id = id;
         this.title = title;
         this.content = content;

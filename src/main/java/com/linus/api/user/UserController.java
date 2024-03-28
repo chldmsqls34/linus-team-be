@@ -4,37 +4,33 @@ import com.linus.api.enums.Messenger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
-import java.sql.SQLException;
 import java.util.*;
 
-import static com.linus.api.enums.Messenger.FAIL;
-
-@CrossOrigin(origins ="http://localhost:3000/")
+@CrossOrigin(origins ="http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 
 public class UserController {
-    private final UserServiceImpl service;
+
     private final UserRepository repo;
 
     @PostMapping("/api/login")
     public Map<String,?> login(@RequestBody Map<?,?>paramMap){
         Map<String, Messenger> map = new HashMap<>();
-        User optUser = repo.findByUsername((String) paramMap.get("username")).orElse(null);
-        if(optUser == null){
-            System.out.println(Messenger.FAIL);
-            map.put("message", Messenger.FAIL);
-        }else if (!optUser.getPassword().equals(paramMap.get("password"))){
-            System.out.println(Messenger.WRONG_PASSWORD);
-            map.put("message", Messenger.WRONG_PASSWORD);
-        }else {
-            System.out.println(Messenger.SUCCESS);
-            map.put("message", Messenger.SUCCESS);
-            System.out.println("ID is "+ optUser.getId());
-            System.out.println("PW is "+ optUser.getPassword());
-            System.out.println("User is "+null);
+        String username = (String) paramMap.get("username");
+        User dbUser = repo.findByUsername(username).orElse(null);
+        String password = Objects.requireNonNull(dbUser).getPassword();
+        if(dbUser == null){
+            map.put("message",Messenger.FAIL);
+        }else if(!Objects.equals(password,paramMap.get("password"))){
+            map.put("message",Messenger.WRONG_PASSWORD);
+        }else{
+            map.put("message",Messenger.SUCCESS);
         }
+        Long id = dbUser.getId();
+        System.out.println("ID is"+id);
+        System.out.println("Password is"+password);
+        System.out.println("User is"+dbUser);
         return map;
 //        String username = (String) paramMap.get("username");
 //        String password = (String) paramMap.get("password");
@@ -49,6 +45,7 @@ public class UserController {
     public Map<String,?> join(@RequestBody Map<String,?> paramMap){
         String strHeight = String.valueOf(paramMap.get("height"));
         String strWeight = String.valueOf(paramMap.get("weight"));
+        @SuppressWarnings("null")
         User newUser = repo.save(User.builder()
                 .username((String)paramMap.get("username"))
                 .password((String)paramMap.get("password"))

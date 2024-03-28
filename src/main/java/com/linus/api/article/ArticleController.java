@@ -35,4 +35,5 @@ public class ArticleController {
     map.put("result", list);
     return map;
   }
+
 }
